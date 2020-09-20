@@ -7,7 +7,29 @@ export default function WebForm() {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
-      <label for="email">Email</label>
+      <label htmlFor="name">Name*</label>
+      <input
+        name="name"
+        ref={register({
+          required: "Required",
+        })}
+      />
+      {errors.name && errors.name.message}
+
+      <label htmlFor="phone">Phone Number</label>
+      <input
+        name="phone"
+        type="tel"
+        // ref={register({
+        //   pattern: {
+        //     value: "[0-9]{4}-[0-9]{4}-[0-9]{3}",
+        //     message: "invalid phone address"
+        //   },
+        // })}
+      />
+      {errors.phone && errors.phone.message}
+
+      <label htmlFor="email">Email*</label>
       <input
         name="email"
         ref={register({
@@ -20,13 +42,15 @@ export default function WebForm() {
       />
       {errors.email && errors.email.message}
 
+      <label htmlFor="description">Description*</label>
       <input
-        name="username"
+        name="description"
         ref={register({
-          validate: value => value !== "admin" || "Nice try!",
+          required: "Required",
+          //   validate: value => value !== "admin" || "Nice try!",
         })}
       />
-      {errors.username && errors.username.message}
+      {errors.description && errors.description.message}
 
       <button type="submit">Submit</button>
     </form>
